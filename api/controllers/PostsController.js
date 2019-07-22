@@ -15,11 +15,13 @@
 // const allPosts = [post1, post2, post3]
 
 module.exports = {
-    posts: function(req, res) {
-        Post.find().exec(function(err, posts) {
+    posts:  async function(req, res) {
+        try {
+            const posts = await Post.find()
             res.send(posts)
-        })
-        // res.send(allPosts)
+        } catch (err) {
+            res.serverError(err.toString() )
+        }
     },
 
     create: function(req, res) {
@@ -36,12 +38,6 @@ module.exports = {
             console.log("Finished creating post object")
             res.end()
         })
-        // const newPosts = {id: 4,
-        //     title: title,
-        //     body: postBody}
-        // allPosts.push(newPosts) 
-
-        // res.end()
     },
 
     findById:  function(req, res) {
@@ -55,6 +51,13 @@ module.exports = {
         } else {
             res.send('Failed to find post by id:' + postId)
         }
+    },
+
+    delete: async function(req, res) {
+        const postId = req.param('postId')
+
+        await Post.destroy({id: postId})
+        res.send('Finished deleting post')
     }
 
 }
