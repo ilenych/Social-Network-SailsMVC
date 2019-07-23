@@ -36,6 +36,7 @@ module.exports = {
                 return res.serverError(err.toString())
             }
             console.log("Finished creating post object")
+            return res.redirect('/home')
             res.end()
         })
     },
