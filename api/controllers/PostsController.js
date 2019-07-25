@@ -1,19 +1,3 @@
-// dummy database 
-// const post1 = {id: 1,
-//     title: 'Something',
-//     body: 'Body'
-// }
-// const post2 = {id: 2,
-//     title: 'Something 2',
-//     body: 'Body 2'
-// }
-// const post3 = {id: 3,
-//     title: 'Something 3',
-//     body: 'Body 3'
-// }
-
-// const allPosts = [post1, post2, post3]
-
 module.exports = {
     posts:  async function(req, res) {
         try {
@@ -37,7 +21,6 @@ module.exports = {
             }
             console.log("Finished creating post object")
             return res.redirect('/home')
-            res.end()
         })
     },
 
