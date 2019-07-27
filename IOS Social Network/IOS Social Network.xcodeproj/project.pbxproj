@@ -13,6 +13,7 @@
 		9743938722E873A60064EBB4 /* IOS_Social_Network.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9743938522E873A60064EBB4 /* IOS_Social_Network.xcdatamodeld */; };
 		9743938922E873A70064EBB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9743938822E873A70064EBB4 /* Assets.xcassets */; };
 		9743938C22E873A70064EBB4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9743938A22E873A70064EBB4 /* LaunchScreen.storyboard */; };
+		97B5744A22ECEB8600C93795 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B5744922ECEB8600C93795 /* Service.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		9743938822E873A70064EBB4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9743938B22E873A70064EBB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9743938D22E873A70064EBB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		97B5744922ECEB8600C93795 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				9743937E22E873A60064EBB4 /* AppDelegate.swift */,
 				9743938022E873A60064EBB4 /* ViewController.swift */,
+				97B5744922ECEB8600C93795 /* Service.swift */,
 				9743938222E873A60064EBB4 /* Main.storyboard */,
 				9743938822E873A70064EBB4 /* Assets.xcassets */,
 				9743938A22E873A70064EBB4 /* LaunchScreen.storyboard */,
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9743938122E873A60064EBB4 /* ViewController.swift in Sources */,
+				97B5744A22ECEB8600C93795 /* Service.swift in Sources */,
 				9743938722E873A60064EBB4 /* IOS_Social_Network.xcdatamodeld in Sources */,
 				9743937F22E873A60064EBB4 /* AppDelegate.swift in Sources */,
 			);

@@ -13,86 +13,9 @@ struct Post: Decodable {
     var title, body: String
 }
 
-class Service: NSObject {
-    static let shared = Service()
-    
-    func fetchPosts(compilation: @escaping (Result <[Post], Error>) -> ()) {
-        guard let url = URL(string: "http://localhost:1337/posts") else { return }
-        
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            DispatchQueue.main.async {
-                if let err = error {
-                    print(err)
-                    return
-                }
-                
-                guard let data = data else { return }
-                
-                do {
-                    let posts  = try JSONDecoder().decode([Post].self, from: data)
-                    compilation(.success(posts))
-                } catch {
-                    compilation(.failure(error))
-                }
-            }
-            }.resume()
-    }
-    
-    func createPosts(title: String, body: String, compilation: @escaping (Error?) -> ()) {
-        guard let url = URL(string: "http://localhost:1337/post") else { return }
-        
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "POST"
-        
-        let params = ["title": title, "postBody": body]
-        
-        do {
-            let data = try JSONSerialization.data(withJSONObject: params, options: .init())
-            urlRequest.httpBody = data
-            urlRequest.setValue("aplication/json", forHTTPHeaderField: "content-type")
-            
-            URLSession.shared.dataTask(with: urlRequest) { (data, resp, err) in
-                
-                guard let data = data  else { return }
-                
-                compilation(nil)
-                }.resume()
-        } catch {
-            compilation(error)
-        }
-    }
-    
-    func deletePost(id: Int, compilation: @escaping (Error?) -> ()) {
-        guard let url = URL(string: "http://localhost:1337/post/\(id)") else { return }
-        
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "DELETE"
-        
-        URLSession.shared.dataTask(with: urlRequest) { (data, resp, err) in
-            DispatchQueue.main.async {
-                if let err = err {
-                    compilation(err)
-                    return
-                }
-                
-                if let resp = resp as? HTTPURLResponse, resp.statusCode != 200 {
-                    
-                    let errorString = String(data: data ?? Data(), encoding: .utf8) ?? ""
-                    
-                    compilation(NSError(domain: "", code: resp.statusCode, userInfo: [NSLocalizedDescriptionKey: errorString]))
-                    return
-                }
-            }
-            
-            compilation(nil)
-            
-            }.resume()
-    }
-}
-
 class ViewController: UITableViewController {
     
-    fileprivate func fetchPosts() {
+    fileprivate func  fetchPosts() {
         Service.shared.fetchPosts { (res) in
             switch res {
             case .success(let posts):
@@ -142,6 +65,7 @@ class ViewController: UITableViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Posts"
         navigationItem.rightBarButtonItem = .init(title: "Create post", style: .plain, target: self, action: #selector(handleCreatePost))
+        navigationItem.leftBarButtonItem = .init(title: "Login", style: .plain, target: self, action: #selector(handleLogin))
     }
     
     @objc func handleCreatePost() {
@@ -153,6 +77,32 @@ class ViewController: UITableViewController {
             }
             self.fetchPosts()
         }
+    }
+    
+    @objc fileprivate func handleLogin() {
+        print("Login")
+        guard let url = URL(string: "http://localhost:1440/api/v1/entrance/login") else { return }
+        
+        var loginRequest = URLRequest(url: url)
+        loginRequest.httpMethod = "PUT"
+        do {
+            let params = ["emailAddress": "alex@gmail.com", "password": "123123"]
+            loginRequest.httpBody = try JSONSerialization.data(withJSONObject: params, options: .init())
+            
+            URLSession.shared.dataTask(with: loginRequest) { (data, resp, err) in
+                
+                if let err = err {
+                    print("Failed to login:", err)
+                    return
+                }
+                
+                print("test")
+                self.fetchPosts()
+            }.resume()
+        } catch {
+            print("Failed to serialze data:", error)
+        }
+       
     }
 }
 

@@ -18,9 +18,13 @@ module.exports.session = {
   * of your users, forcing them to log in again.                             *
   *                                                                          *
   ***************************************************************************/
-  secret: '85fc22e25be7652a990e9948cb1f1b94',
+  secret: '556fdaabb09c9dce534b8b3abf84581d',
 
+  // adapter: 'connect-mongo',
+  // url: 'mongodb+srv://box:box@cluster0-twli5.mongodb.net/network?retryWrites=true&w=majority',
+  // collection: 'sessions',
 
+  
   /***************************************************************************
   *                                                                          *
   * Customize when built-in session support will be skipped.                 *
