@@ -8,12 +8,8 @@
 
 import UIKit
 
-struct Post: Decodable {
-    var id: Int
-    var title, body: String
-}
-
-class ViewController: UITableViewController {
+class MainViewController: UITableViewController {
+    
     
     fileprivate func  fetchPosts() {
         Service.shared.fetchPosts { (res) in
@@ -26,6 +22,7 @@ class ViewController: UITableViewController {
             }
         }
     }
+    
     var posts = [Post]()
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -41,6 +38,7 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
         if editingStyle == .delete {
             print("Delete post")
             let post = self.posts[indexPath.row]
@@ -60,12 +58,15 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fetchPosts()
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+            self.fetchPosts()
+        }
+        
         
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Posts"
         navigationItem.rightBarButtonItem = .init(title: "Create post", style: .plain, target: self, action: #selector(handleCreatePost))
-        navigationItem.leftBarButtonItem = .init(title: "Login", style: .plain, target: self, action: #selector(handleLogin))
+        navigationItem.leftBarButtonItem = .init(title: "Update", style: .plain, target: self, action: #selector(handleUpdate))
     }
     
     @objc func handleCreatePost() {
@@ -79,30 +80,16 @@ class ViewController: UITableViewController {
         }
     }
     
-    @objc fileprivate func handleLogin() {
-        print("Login")
-        guard let url = URL(string: "http://localhost:1440/api/v1/entrance/login") else { return }
-        
-        var loginRequest = URLRequest(url: url)
-        loginRequest.httpMethod = "PUT"
-        do {
-            let params = ["emailAddress": "alex@gmail.com", "password": "123123"]
-            loginRequest.httpBody = try JSONSerialization.data(withJSONObject: params, options: .init())
-            
-            URLSession.shared.dataTask(with: loginRequest) { (data, resp, err) in
-                
-                if let err = err {
-                    print("Failed to login:", err)
-                    return
-                }
-                
-                print("test")
-                self.fetchPosts()
-            }.resume()
-        } catch {
-            print("Failed to serialze data:", error)
-        }
-       
+//    @objc fileprivate func handleLogin() {
+//        print("Login")
+//        
+//        Service.shared.login()
+//        self.fetchPosts()
+//        
+//    }
+    
+    @objc func handleUpdate() {
+        fetchPosts()
     }
 }
 

@@ -9,9 +9,10 @@
 import Foundation
 
 class Service: NSObject {
+    
     static let shared = Service()
     
-    let baseUrl = "http://localhost:1440"
+    fileprivate let baseUrl = "http://localhost:1440"
     
     func fetchPosts(compilation: @escaping (Result <[Post], Error>) -> ()) {
         guard let url = URL(string: "\(baseUrl)/home") else { return }
@@ -52,7 +53,7 @@ class Service: NSObject {
             urlRequest.setValue("aplication/json", forHTTPHeaderField: "content-type")
             
             URLSession.shared.dataTask(with: urlRequest) { (data, resp, err) in
-                
+                //check the error
                 guard let data = data  else { return }
                 
                 compilation(nil)
@@ -87,5 +88,27 @@ class Service: NSObject {
             compilation(nil)
             
             }.resume()
+    }
+    
+    func login(email: String, password: String) {
+        
+        guard let url = URL(string: "\(baseUrl)/api/v1/entrance/login") else { return }
+        
+        var loginRequest = URLRequest(url: url)
+        loginRequest.httpMethod = "PUT"
+        do {
+            let params = ["emailAddress": "alex@gmail.com", "password": "123123"]
+            loginRequest.httpBody = try JSONSerialization.data(withJSONObject: params, options: .init())
+            
+            URLSession.shared.dataTask(with: loginRequest) { (data, resp, err) in
+                
+                if let err = err {
+                    print("Failed to login:", err)
+                    return
+                }
+                }.resume()
+        } catch {
+            print("Failed to serialze data:", error)
+        }
     }
 }

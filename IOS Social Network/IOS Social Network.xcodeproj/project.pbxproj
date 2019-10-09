@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9710E66022F1A25F00BA67F7 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9710E65F22F1A25F00BA67F7 /* Post.swift */; };
+		9710E66222F1CC2300BA67F7 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9710E66122F1CC2300BA67F7 /* StartViewController.swift */; };
+		9710E66422F1CF4700BA67F7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9710E66322F1CF4700BA67F7 /* LoginViewController.swift */; };
 		9743937F22E873A60064EBB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9743937E22E873A60064EBB4 /* AppDelegate.swift */; };
-		9743938122E873A60064EBB4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9743938022E873A60064EBB4 /* ViewController.swift */; };
+		9743938122E873A60064EBB4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9743938022E873A60064EBB4 /* MainViewController.swift */; };
 		9743938422E873A60064EBB4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9743938222E873A60064EBB4 /* Main.storyboard */; };
 		9743938722E873A60064EBB4 /* IOS_Social_Network.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9743938522E873A60064EBB4 /* IOS_Social_Network.xcdatamodeld */; };
 		9743938922E873A70064EBB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9743938822E873A70064EBB4 /* Assets.xcassets */; };
@@ -17,9 +20,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9710E65F22F1A25F00BA67F7 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		9710E66122F1CC2300BA67F7 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		9710E66322F1CF4700BA67F7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9743937B22E873A60064EBB4 /* IOS Social Network.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IOS Social Network.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9743937E22E873A60064EBB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9743938022E873A60064EBB4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9743938022E873A60064EBB4 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		9743938322E873A60064EBB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9743938622E873A60064EBB4 /* IOS_Social_Network.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IOS_Social_Network.xcdatamodel; sourceTree = "<group>"; };
 		9743938822E873A70064EBB4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -59,7 +65,10 @@
 			isa = PBXGroup;
 			children = (
 				9743937E22E873A60064EBB4 /* AppDelegate.swift */,
-				9743938022E873A60064EBB4 /* ViewController.swift */,
+				9743938022E873A60064EBB4 /* MainViewController.swift */,
+				9710E66122F1CC2300BA67F7 /* StartViewController.swift */,
+				9710E66322F1CF4700BA67F7 /* LoginViewController.swift */,
+				9710E65F22F1A25F00BA67F7 /* Post.swift */,
 				97B5744922ECEB8600C93795 /* Service.swift */,
 				9743938222E873A60064EBB4 /* Main.storyboard */,
 				9743938822E873A70064EBB4 /* Assets.xcassets */,
@@ -141,10 +150,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9743938122E873A60064EBB4 /* ViewController.swift in Sources */,
+				9710E66422F1CF4700BA67F7 /* LoginViewController.swift in Sources */,
+				9743938122E873A60064EBB4 /* MainViewController.swift in Sources */,
 				97B5744A22ECEB8600C93795 /* Service.swift in Sources */,
 				9743938722E873A60064EBB4 /* IOS_Social_Network.xcdatamodeld in Sources */,
 				9743937F22E873A60064EBB4 /* AppDelegate.swift in Sources */,
+				9710E66022F1A25F00BA67F7 /* Post.swift in Sources */,
+				9710E66222F1CC2300BA67F7 /* StartViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
